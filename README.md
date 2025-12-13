@@ -2,34 +2,34 @@
 
 **Live Demo:** [https://pratik-kamath.github.io/wins95Portfolio/](https://pratik-kamath.github.io/wins95Portfolio/)
 
-![Windows 95 Portfolio](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/markdown.png?raw=true)
+![Windows 95 Portfolio](src/assets/markdown.png)
 
 A fully interactive Windows 95-themed portfolio built with React. It features a complete desktop environment with draggable windows, a start menu, and functional applications.
 
 ## Featured Functionality
 
 ### Login Screen
-![Login](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/login.gif?raw=true)
+![Login](src/assets/login.gif)
 
 ### Drag and Drop
-![Drag and Drop](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/dragDrop.gif?raw=true)
+![Drag and Drop](src/assets/dragDrop.gif)
 
 ### Customization (Icon Size & Background)
-![Customization](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/iconSize.gif?raw=true)
-![Background](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/bg.gif?raw=true)
+![Customization](src/assets/iconSize.gif)
+![Background](src/assets/bg.gif)
 
 ### Run Command
-![Run Command](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/run.gif?raw=true)
+![Run Command](src/assets/run.gif)
 
 ### Live Chat (MSN Messenger)
-![MSN](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/msn.gif?raw=true)
+![MSN](src/assets/msn.gif)
 
 ### Notifications & Calendar
-![Notification](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/Noti.gif?raw=true)
-![Calendar](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/calendar.gif?raw=true)
+![Notification](src/assets/Noti.gif)
+![Calendar](src/assets/calendar.gif)
 
 ### Games (Minesweeper)
-![Minesweeper](https://github.com/Yuteoctober/wins95Portfolio/blob/main/src/assets/game.gif?raw=true)
+![Minesweeper](src/assets/game.gif)
 
 ## Key Features
 
