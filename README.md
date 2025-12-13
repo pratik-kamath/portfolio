@@ -21,8 +21,7 @@ A fully interactive Windows 95-themed portfolio built with React. It features a 
 ### Run Command
 ![Run Command](src/assets/run.gif)
 
-### Live Chat (MSN Messenger)
-![MSN](src/assets/msn.gif)
+
 
 ### Notifications & Calendar
 ![Notification](src/assets/Noti.gif)
@@ -44,7 +43,6 @@ A fully interactive Windows 95-themed portfolio built with React. It features a 
 *   **My Computer**: Navigate through drives (C:, D:) and folders.
 *   **Winamp**: Fully functional music player integration.
 *   **Paint**: Classic MS Paint experience (via JSPaint).
-*   **MSN Messenger**: Live chat functionality powered by WebSockets, including an AI Chatbot.
 *   **Mail**: Send emails directly from the desktop (powered by EmailJS).
 *   **Projects & Resume**: Showcase of professional work and resume in a file-explorer style.
 *   **Store**: Install and uninstall apps dynamically.
@@ -62,7 +60,6 @@ A fully interactive Windows 95-themed portfolio built with React. It features a 
 *   **Framer Motion**: Animations.
 *   **Webamp**: Media player component.
 *   **React Calendar**: Calendar widget.
-*   **Socket.io**: Real-time communication for MSN.
 
 ## Credits
 Windows 95 Icons: [Old Windows Icons](https://oldwindowsicons.tumblr.com/tagged/windows%2095)
