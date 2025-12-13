@@ -246,7 +246,9 @@ export function handleDoubleClickPhotoOpenMobile(name, setCurrentPhoto, lastTapT
 }
 
 // click to open links
-export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUrl) {
+export function handleDoubleClickiframe(name, setOpenProjectExpand, setProjectUrl, setProjectDescription) {
+
+  if (setProjectDescription) setProjectDescription('');
 
   switch (name) {
     case 'Nft':

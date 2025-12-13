@@ -168,6 +168,7 @@ function App() {
   const [tap, setTap] = useState([])
   const [lastTapTime, setLastTapTime] = useState(0)
   const [projectUrl, setProjectUrl] = useState('')
+  const [projectDescription, setProjectDescription] = useState('')
   const [MybioExpand, setMybioExpand] = useState(
     {
       expand: false, // fullscreen
@@ -218,14 +219,17 @@ function App() {
   const [desktopIcon, setDesktopIcon] = useState(() => {
     const localItems = localStorage.getItem('icons');
 
-    const deleteIcon = ['Cat', 'AiAgent', 'Winamp', 'Paint', '3dObject'];
+    const deleteIcon = ['Cat', 'AiAgent', 'Paint', '3dObject'];
 
     const filteredItems = iconInfo.filter(item => !deleteIcon.includes(item.name));
 
-    const parsedItems = localItems ? JSON.parse(localItems) : filteredItems;
+    if (localItems) {
+      const parsedItems = JSON.parse(localItems);
+      const missingItems = filteredItems.filter(item => !parsedItems.some(p => p.name === item.name));
+      return [...parsedItems, ...missingItems];
+    }
 
-
-    return parsedItems;
+    return filteredItems;
   });
 
   const [MineSweeperExpand, setMineSweeperExpand] = useState(
@@ -999,6 +1003,7 @@ function App() {
     login, setLogin,
     openProjectExpand, setOpenProjectExpand,
     projectUrl, setProjectUrl,
+    projectDescription, setProjectDescription,
     projectname,
     windowsShutDownAnimation, setWindowsShutDownAnimation,
     BgSettingExpand, setBgSettingExpand,
@@ -1442,6 +1447,8 @@ function App() {
       { name: 'TaskManager', setter: setTaskManagerExpand, usestate: TaskManagerExpand, color: 'rgba(218, 160, 109, 0.85)', size: 'small' },
       { name: 'Store', setter: setStoreExpand, usestate: StoreExpand, color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
       { name: 'Bitcoin', setter: setBtcShow, usestate: btcShow, color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
+      { name: 'CeleStE', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(82, 117, 132, 0.85)', size: 'small' },
+      { name: 'IEEE Paper', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(82, 117, 132, 0.85)', size: 'small' },
 
       // Add user folders dynamically with individual state management
       ...UserCreatedFolder.map(folder => ({
@@ -1520,7 +1527,7 @@ function App() {
     }
 
     allSetItems.forEach((item) => {
-      const itemName = item.name.toLowerCase().trim();
+      const itemName = item.name.toLowerCase().split(' ').join('');
 
       if (itemName === lowerCaseName) {
         setTimeout(() => {
@@ -1553,23 +1560,31 @@ function App() {
         if (lowerCaseName === 'winamp') clippySongFunction();
 
         if (lowerCaseName === 'nft') {
-          handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl)
+          handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl, setProjectDescription)
           handleShow('Internet');
         }
         if (lowerCaseName === 'note') {
-          handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
+          handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl, setProjectDescription)
           handleShow('Internet');
         }
         if (lowerCaseName === 'aiagent') {
-          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl)
+          handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl, setProjectDescription)
           handleShow('Internet');
         }
         if (lowerCaseName === '3dobject') {
-          handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
+          handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl, setProjectDescription)
           handleShow('Internet');
         }
         if (lowerCaseName === 'fortune') {
-          handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
+          handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl, setProjectDescription)
+          handleShow('Internet');
+        }
+
+        // Generic Project Handler
+        const projectData = desktopIcon.find(icon => icon.name.toLowerCase().split(' ').join('') === lowerCaseName);
+        if (projectData && projectData.folderId === 'Project' && projectData.description && projectData.link) {
+          setProjectUrl(projectData.link);
+          setProjectDescription(projectData.description);
           handleShow('Internet');
         }
       } else {
@@ -1590,7 +1605,13 @@ function App() {
     const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin'];
     if (notToOpenList.includes(name)) return;
 
+    const projectDataForTaskbar = desktopIcon.find(icon => icon.name.toLowerCase().split(' ').join('') === lowerCaseName);
+    if (projectDataForTaskbar && projectDataForTaskbar.folderId === 'Project' && projectDataForTaskbar.description && projectDataForTaskbar.link) {
+      return;
+    }
+
     setTap(prevTap => [...prevTap, name]);
+
     setDesktopIcon(prevIcons => prevIcons.map(icon => ({ ...icon, focus: false })));
   }
 
@@ -1631,7 +1652,7 @@ function App() {
 
       allSetItems.forEach((item) => {
 
-        const itemName = item.name.toLowerCase().trim();
+        const itemName = item.name.toLowerCase().split(' ').join('');
 
         if (itemName === lowerCaseName) {
           setTimeout(() => {
@@ -1659,25 +1680,30 @@ function App() {
           if (lowerCaseName === 'winamp') clippySongFunction();
           if (lowerCaseName === 'msn') clippyUsernameFunction();
           if (lowerCaseName === 'nft') {
-            handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl)
+            handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl, setProjectDescription)
             handleShow('Internet');
           }
           if (lowerCaseName === 'note') {
-            handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl)
+            handleDoubleClickiframe('Note', setOpenProjectExpand, setProjectUrl, setProjectDescription)
             handleShow('Internet');
           }
           if (lowerCaseName === 'aiagent') {
-            handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl)
+            handleDoubleClickiframe('AiAgent', setOpenProjectExpand, setProjectUrl, setProjectDescription)
             handleShow('Internet');
           }
           if (lowerCaseName === '3dobject') {
-            handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl)
+            handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl, setProjectDescription)
             handleShow('Internet');
           }
-          if (lowerCaseName === 'fortune') {
-            handleDoubleClickiframe('Fortune', setOpenProjectExpand, setProjectUrl)
-            handleShow('Internet');
-          }
+          handleShow('Internet');
+        }
+
+        // Generic Project Handler
+        const projectData = desktopIcon.find(icon => icon.name.toLowerCase().split(' ').join('') === lowerCaseName);
+        if (projectData && projectData.folderId === 'Project' && projectData.description && projectData.link) {
+          setProjectUrl(projectData.link);
+          setProjectDescription(projectData.description);
+          handleShow('Internet');
         }
         if (item.type === 'userCreatedFolder') {
           item.setter({ focusItem: false });
@@ -1693,7 +1719,13 @@ function App() {
       const notToOpenList = ['Run', 'Nft', 'Note', 'AiAgent', '3dObject', 'Fortune', 'Bitcoin'];
       if (notToOpenList.includes(name)) return;
 
+      const projectDataForTaskbar = desktopIcon.find(icon => icon.name.toLowerCase().split(' ').join('') === lowerCaseName);
+      if (projectDataForTaskbar && projectDataForTaskbar.folderId === 'Project' && projectDataForTaskbar.description && projectDataForTaskbar.link) {
+        return;
+      }
+
       setTap(prevTap => [...prevTap, name]);
+
       setDesktopIcon(prevIcons => prevIcons.map(icon => ({ ...icon, focus: false })));
 
     }
