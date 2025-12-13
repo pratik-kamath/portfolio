@@ -40,6 +40,7 @@ import tile from '../../assets/tile.png'
 import taskmanager from '../../assets/taskmanager.png'
 import notepad from '../../assets/notepad.png'
 import store from '../../assets/store.png'
+import celeste from '../../assets/celeste.jpg'
 
 
 
@@ -193,6 +194,10 @@ export function imageMapping(name, type) {
     case "Store":
     case "store":
       return store
+
+    case "CeleStE":
+    case "celeste":
+      return celeste
 
     default:
       if (type === 'folder') {
