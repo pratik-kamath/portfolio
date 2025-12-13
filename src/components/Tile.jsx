@@ -53,20 +53,20 @@ const imageList = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11];
 const ItemType = 'TILE';
 
 export default function Tile({ id, content, index, size, color, moveTile, imageMapping, disable, randomBGFunction }) {
-  const { 
+  const {
     setCurrentPhoto,
     allNews,
-    city, 
-    Cel, setCel, 
+    city,
+    Cel, setCel,
     weather,
     setNewsPopup,
     bgRotation, setBgRotation,
-    setTileScreen, handleShow 
+    setTileScreen, handleShow
   } = useContext(UseContext);
 
   const ref = useRef(null);
   const previewRef = useRef(null);
-  const tileCooldown = useRef(false); 
+  const tileCooldown = useRef(false);
 
   const [animationCD, setAnimationCD] = useState(true)
   const [imgIndex, setImgIndex] = useState(0);
@@ -106,9 +106,9 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
   // Set custom preview to current element and center it
   useEffect(() => {
     setTimeout(() => {
-      setAnimationCD(false) 
+      setAnimationCD(false)
     }, 1000);
-    
+
     if (previewRef.current) {
       preview(previewRef.current, { anchorX: 0.5, anchorY: 0.5 });
     }
@@ -128,13 +128,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundPosition: 'center',
           pointerEvents: disable ? 'none' : 'auto',
         };
-      case 'MSN':
-        return {
-          backgroundImage: `url(${chat})`,
-          backgroundPosition: '50% 13px',
-          backgroundSize: '85px',
-          backgroundRepeat: 'no-repeat',
-        };
+
       case 'Settings':
         return {
           backgroundImage: `url(${settings})`,
@@ -283,7 +277,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundRepeat: 'no-repeat',
         };
       case 'Weather':
-        if(weather && city) {
+        if (weather && city) {
           return;
         }
         return {
@@ -292,28 +286,28 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
           backgroundSize: '42px',
           backgroundRepeat: 'no-repeat',
         };
-        case 'Github':
+      case 'Github':
         return {
           backgroundImage: `url(${githublogo})`,
           backgroundPosition: '50% 57%',
           backgroundSize: '48px',
           backgroundRepeat: 'no-repeat',
         };
-        case 'TaskManager':
+      case 'TaskManager':
         return {
           backgroundImage: `url(${task})`,
           backgroundPosition: '50% 57%',
           backgroundSize: '42px',
           backgroundRepeat: 'no-repeat',
         };
-        case 'Store':
+      case 'Store':
         return {
           backgroundImage: `url(${store})`,
           backgroundPosition: '50% 57%',
           backgroundSize: '64px',
           backgroundRepeat: 'no-repeat',
         };
-        case 'News':
+      case 'News':
         // if(displayNewsTile.originalNews || filteredNews.length > 0) {
         //   return;
         // }
@@ -373,7 +367,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         return;
 
       case 'Weather':
-        if(city && weather) {
+        if (city && weather) {
           setCel(!Cel)
           return;
         }
@@ -387,7 +381,7 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
         return;
 
       case 'Picture':
-        handleDoubleClickPhotoOpen(imgIndex + 1,  setCurrentPhoto)
+        handleDoubleClickPhotoOpen(imgIndex + 1, setCurrentPhoto)
         handleShow('Photo');
         setTileScreen(false);
         return;
@@ -422,64 +416,64 @@ export default function Tile({ id, content, index, size, color, moveTile, imageM
 
   return (
     <AnimatePresence>
-        <motion.div
-          ref={(node) => {
-            ref.current = node;
-            previewRef.current = node;
-          }}
-          className={tileClasses}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ ease: 'easeInOut', duration: 0.8 }}
-          exit={{ opacity: 0 }}
-          style={{
-            touchAction : animationCD ? 'none' : 'auto',
-            pointerEvents: animationCD ? 'none' : 'auto',
-            display: 'grid',
-            position: 'relative',
-            opacity: isDragging ? 0.5 : 1,
-            background: color,
-            ...tileBG(content, disable),
-          }}
-          onClick={(e) => {
-            e.stopPropagation()
-            handleTileClick(content)
-          }}
-        >
-          {content === 'Time' && (
-            <div className="time_icon" onClick={() => setFormatTime(!formatTime)}>
-              <p>{formatTime ? currentTime24 : currentTime12}</p>
-            </div>
-          )}
-          {(content === 'Weather' && weather && city) && (
-            <div className="weather_tile_container">
-              <h2>
-                {Cel? weather.temp : ((weather.temp - 32) * 5 / 9).toFixed(0)}
-                <span>{Cel? '°F':'°C'}</span>
-              </h2>
-              <p>{city}</p>
-            </div>
-          )}
-          {content === 'Background' && (
-            <div className="switch_bg">
-              <Switch
-                onChange={backgroundSwitchSave}
-                checked={bgRotation}
-                offColor="#454040"
-                onColor="#4CAF50"
-                uncheckedIcon={false}
-                checkedIcon={false}
-                height={28}        
-                width={56}            
-              />
-            </div>
-          )}
-
-          <span className="tile_name">{mappingIconName(content)}</span>
-          <div className="tile_pic_container">
-            <img className="tile_pic" src={''} alt="" />
+      <motion.div
+        ref={(node) => {
+          ref.current = node;
+          previewRef.current = node;
+        }}
+        className={tileClasses}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ ease: 'easeInOut', duration: 0.8 }}
+        exit={{ opacity: 0 }}
+        style={{
+          touchAction: animationCD ? 'none' : 'auto',
+          pointerEvents: animationCD ? 'none' : 'auto',
+          display: 'grid',
+          position: 'relative',
+          opacity: isDragging ? 0.5 : 1,
+          background: color,
+          ...tileBG(content, disable),
+        }}
+        onClick={(e) => {
+          e.stopPropagation()
+          handleTileClick(content)
+        }}
+      >
+        {content === 'Time' && (
+          <div className="time_icon" onClick={() => setFormatTime(!formatTime)}>
+            <p>{formatTime ? currentTime24 : currentTime12}</p>
           </div>
-        </motion.div>
+        )}
+        {(content === 'Weather' && weather && city) && (
+          <div className="weather_tile_container">
+            <h2>
+              {Cel ? weather.temp : ((weather.temp - 32) * 5 / 9).toFixed(0)}
+              <span>{Cel ? '°F' : '°C'}</span>
+            </h2>
+            <p>{city}</p>
+          </div>
+        )}
+        {content === 'Background' && (
+          <div className="switch_bg">
+            <Switch
+              onChange={backgroundSwitchSave}
+              checked={bgRotation}
+              offColor="#454040"
+              onColor="#4CAF50"
+              uncheckedIcon={false}
+              checkedIcon={false}
+              height={28}
+              width={56}
+            />
+          </div>
+        )}
+
+        <span className="tile_name">{mappingIconName(content)}</span>
+        <div className="tile_pic_container">
+          <img className="tile_pic" src={''} alt="" />
+        </div>
+      </motion.div>
     </AnimatePresence>
   );
 }

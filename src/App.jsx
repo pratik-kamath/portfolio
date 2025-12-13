@@ -39,7 +39,7 @@ function App() {
   const [itemBeingSelected, setItemBeingSelected] = useState(null)
   const [installIcon, setInstallIcon] = useState(0)
   const [currentRightClickFolder, setCurrentRightClickFolder] = useState('Desktop')
-  const [ringMsn, setRingMsn] = useState(false)
+
   const [showChart, setShowChart] = useState(false)
   const [keyRef, setKeyRef] = useState(0)
   const [localBg, setLocalBg] = useState(() => {
@@ -231,8 +231,7 @@ function App() {
   const [MineSweeperExpand, setMineSweeperExpand] = useState(
     { expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1, });
 
-  const [MSNExpand, setMSNExpand] = useState(
-    { expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1, });
+
 
   const [BgSettingExpand, setBgSettingExpand] = useState(
     { expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1, });
@@ -484,9 +483,7 @@ function App() {
         if (data.key) {
           setKeyChatSession(data.key);
         }
-        if (data.ring) {
-          setRingMsn(true)
-        }
+
         else if (data.name && data.chat) {
           setChatData(prevData => [...prevData, data]);
           setLoadedMessages(prev => [...prev, data]);
@@ -567,24 +564,7 @@ function App() {
 
 
 
-  useEffect(() => { // noti
-    if (allowNoti) {
 
-      if (chatData.length) {
-        endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-      }
-
-      if (!MSNExpand.show || MSNExpand.hide) {
-        setNotiOn(false);
-        setTimeout(() => {
-          clearTimeout(clearNotiTimeOut)
-          setNotiOn(true);
-          setNewMessage({ type: 'msn' });  // Notification message
-        }, 100);
-      }
-    }
-
-  }, [chatData])
 
 
   useEffect(() => { // touch support device === true
@@ -886,8 +866,7 @@ function App() {
     StoreExpand, setStoreExpand,
     deletepermanently,
     currentRightClickFolder, setCurrentRightClickFolder,
-    ringMsnOff,
-    ringMsn, setRingMsn,
+
     showChart, setShowChart,
     setRegErrorPopUp, setRegErrorPopUpVal,
     keyRef, setKeyRef,
@@ -1008,7 +987,7 @@ function App() {
     deleteTap,
     shutdownWindow, setShutdownWindow,
     MineSweeperExpand, setMineSweeperExpand,
-    MSNExpand, setMSNExpand,
+
     chatData, setChatData,
     chatValue, setChatValue,
     createChat,
@@ -1356,14 +1335,7 @@ function App() {
   }
 
 
-  function ringMsnOff() {
 
-    if (socket.current) {
-      socket.current.send(JSON.stringify({ ring: true }));
-    } else {
-      console.error('WebSocket is not initialized.');
-    }
-  }
 
 
   async function createChat() { // create chat
@@ -1457,7 +1429,7 @@ function App() {
       { name: 'Winamp', setter: setWinampExpand, usestate: WinampExpand, color: 'rgba(105, 136, 145, 0.85)', size: 'small' },
       { name: 'ResumeFile', setter: setResumeFileExpand, usestate: ResumeFileExpand, color: 'rgba(133, 165, 67, 0.85)', size: 'small' },
       { name: 'MineSweeper', setter: setMineSweeperExpand, usestate: MineSweeperExpand, color: 'rgba(187, 51, 48, 0.85)', size: 'small' },
-      { name: 'MSN', setter: setMSNExpand, usestate: MSNExpand, color: 'rgba(52, 70, 143, 0.85)', size: 'small' },
+
       { name: 'Internet', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(0, 159, 186, 0.85)', size: 'small' },
       { name: 'Settings', setter: setBgSettingExpand, usestate: BgSettingExpand, color: 'rgba(140, 140, 140, 0.85)', size: 'small' },
       { name: 'Run', setter: setRunExpand, usestate: RunExpand, color: 'rgba(86, 114, 122, 0.85)', size: 'small' },
@@ -1536,6 +1508,11 @@ function App() {
       return;
     }
 
+    if (lowerCaseName === 'linkedin') {
+      window.open('https://www.linkedin.com/in/pratik-kamath/', '_blank');
+      return;
+    }
+
     if (!itemExists) {
       setRegErrorPopUp(true);
       setRegErrorPopUpVal(name);
@@ -1571,10 +1548,10 @@ function App() {
         // Your existing special cases...
         if (lowerCaseName === 'mail') clippySendemailfunction();
         if (lowerCaseName === 'winamp') clippySongFunction();
-        if (lowerCaseName === 'msn') clippyUsernameFunction();
+
         if (lowerCaseName === 'mail') clippySendemailfunction();
         if (lowerCaseName === 'winamp') clippySongFunction();
-        if (lowerCaseName === 'msn') clippyUsernameFunction();
+
         if (lowerCaseName === 'nft') {
           handleDoubleClickiframe('Nft', setOpenProjectExpand, setProjectUrl)
           handleShow('Internet');
@@ -1638,6 +1615,11 @@ function App() {
       if (pictureMatch) {
         handleDoubleClickPhotoOpen(name, setCurrentPhoto);
         handleShow('Photo');
+        return;
+      }
+
+      if (lowerCaseName === 'linkedin') {
+        window.open('https://www.linkedin.com/in/pratik-kamath/', '_blank');
         return;
       }
 

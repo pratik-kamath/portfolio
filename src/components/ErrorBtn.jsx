@@ -3,17 +3,17 @@ import { useContext, useState, useEffect } from 'react'
 import Error from '../assets/error.png'
 import '../css/ErrorBtn.css'
 
-function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
+function ErrorBtn({ themeDragBar, stateVal, text, setStateVal, runOpenFuction }) {
     const [YesNo, setYesNo] = useState(false)
     const [Content, setContent] = useState('')
     const [deleteMode, setDeleteMode] = useState(false)
     const [deleteIconName, setDeleteIconName] = useState('')
 
-    const { 
+    const {
         deletepermanently,
         iconBeingRightClicked,
         setUserCreatedFolder,
-        handleSetFocusItemTrue, setRunCatVideo 
+        handleSetFocusItemTrue, setRunCatVideo
 
     } = useContext(UseContext);
     const textResetStroage = "Warning: Resetting local storage will erase all your info. Are you sure you want to continue?"
@@ -23,7 +23,7 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
 
     useEffect(() => {
         handleBtn(stateVal)
-    }, [stateVal]); 
+    }, [stateVal]);
 
     function handleBtn(name) {
 
@@ -33,8 +33,8 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
             setDeleteMode(true);
             setDeleteIconName(name);
             return;
-        }   
-                
+        }
+
         switch (name.toLowerCase()) {
 
             case "resetstorage":
@@ -63,7 +63,7 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
                 break;
         }
     }
-    
+
 
     function handleFunction(name) {
 
@@ -72,20 +72,20 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
             setDeleteMode(false);
             setDeleteIconName('');
             return;
-        }   
+        }
 
         switch (name.toLowerCase()) {
             case "resetstorage":
                 return removeLocalStorage();
 
-            case "github": 
-                return window.open('https://github.com/Yuteoctober/wins95Portfolio/', '_blank');
+            case "github":
+                return window.open('https://github.com/pratik-kamath/', '_blank');
+            case 503:
+            case 500:
+            case 404:
+                return window.open('https://pratik-kamath.github.io/resume_web/', '_blank');
 
-            case "webresume": 
-                
-            return window.open('https://yuteoctober.github.io/resume_web/', '_blank');
-            
-            case "cat": 
+            case "cat":
                 setRunCatVideo(true)
                 return;
 
@@ -95,65 +95,65 @@ function ErrorBtn({themeDragBar, stateVal, text, setStateVal, runOpenFuction}) {
     }
 
 
-    
+
     function removeLocalStorage() {
         setUserCreatedFolder([])
         localStorage.clear();
         location.reload();
     }
 
-  return (
-    <div className="error_container"
-    onClick={(e) => {
-        e.stopPropagation();
-        handleSetFocusItemTrue('');
-      }}
-    >
-        <div className="bar_tap"
-            style={{ background: themeDragBar }}
+    return (
+        <div className="error_container"
+            onClick={(e) => {
+                e.stopPropagation();
+                handleSetFocusItemTrue('');
+            }}
         >
-            <p>{stateVal}</p>
-            <div 
-                onClick={() => {
-                    setStateVal(false)
-                    runOpenFuction()
-                    setDeleteMode(false);
-                    setDeleteIconName('');
-                }}
+            <div className="bar_tap"
+                style={{ background: themeDragBar }}
             >
-                <p>×</p>
+                <p>{stateVal}</p>
+                <div
+                    onClick={() => {
+                        setStateVal(false)
+                        runOpenFuction()
+                        setDeleteMode(false);
+                        setDeleteIconName('');
+                    }}
+                >
+                    <p>×</p>
+                </div>
+            </div>
+            <div className="error_message_container">
+                <img src={Error} alt="error" />
+                <p>{Content}</p>
+            </div>
+            <div className={`confirm_container${YesNo ? '' : 'none'}`}>
+                <div className="error_ok_btn"
+                    onClick={() => {
+                        setStateVal(false)
+                        handleFunction(stateVal)
+                    }}
+
+                >
+                    <p>{YesNo ? 'YES' : 'OK'}</p>
+                </div>
+                {YesNo && (
+                    <div className="error_ok_btn"
+                        onClick={() => {
+                            setStateVal(false)
+                            setDeleteMode(false);
+                            setDeleteIconName('');
+                        }}
+
+                    >
+                        <p>NO</p>
+                    </div>
+                )}
+
             </div>
         </div>
-        <div className="error_message_container">
-            <img src={Error} alt="error" />
-            <p>{Content}</p>
-        </div>
-        <div className={`confirm_container${YesNo ? '' : 'none'}`}>
-            <div className="error_ok_btn"
-                onClick={() => {
-                    setStateVal(false)
-                    handleFunction(stateVal)
-                }}
-                
-            >
-                <p>{YesNo ? 'YES' : 'OK'}</p>
-            </div>
-            {YesNo && (
-             <div className="error_ok_btn"
-                onClick={() => {
-                    setStateVal(false)
-                    setDeleteMode(false);
-                    setDeleteIconName('');
-                }}
-                
-            >
-                <p>NO</p>
-            </div>   
-            )}
-            
-        </div>
-    </div>
-  )
+    )
 }
 
 export default ErrorBtn

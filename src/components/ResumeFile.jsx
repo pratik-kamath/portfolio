@@ -140,7 +140,7 @@ function ResumeFile() {
             {ResumeFileExpand.show ? (
               <iframe
                 onClick={() => setDownloadBox(false)}
-                src="/Pratik_Resume.pdf"
+                src="/wins95Portfolio/Pratik_Resume.pdf"
                 frameBorder='0'
                 title="Pratik Kamath Resume"
               >
