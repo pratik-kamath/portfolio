@@ -225,8 +225,25 @@ function App() {
 
     if (localItems) {
       const parsedItems = JSON.parse(localItems);
+
+      // Update existing items with fresh data from iconInfo (like pic, folderId, link)
+      // This ensures that if we change icon.json, successful updates propagate to users with cached localStorage
+      const updatedParsedItems = parsedItems.map(localItem => {
+        const freshItem = filteredItems.find(f => f.name === localItem.name);
+        if (freshItem) {
+          return {
+            ...localItem,
+            pic: freshItem.pic,
+            folderId: freshItem.folderId,
+            link: freshItem.link,
+            description: freshItem.description
+          };
+        }
+        return localItem;
+      });
+
       const missingItems = filteredItems.filter(item => !parsedItems.some(p => p.name === item.name));
-      return [...parsedItems, ...missingItems];
+      return [...updatedParsedItems, ...missingItems];
     }
 
     return filteredItems;
