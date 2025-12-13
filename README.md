@@ -46,7 +46,6 @@ A fully interactive Windows 95-themed portfolio built with React. It features a 
 *   **Mail**: Send emails directly from the desktop (powered by EmailJS).
 *   **Projects & Resume**: Showcase of professional work and resume in a file-explorer style.
 *   **Store**: Install and uninstall apps dynamically.
-*   **Bitcoin Tracker**: Real-time BTC price widget.
 
 ### ⚙️ System & Utilities
 *   **Run Command**: Execute system commands.

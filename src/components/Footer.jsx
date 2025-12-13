@@ -11,7 +11,6 @@ import project from '../assets/regFolder.png';
 import resume from '../assets/folder.png';
 import shutdownicon from '../assets/shutdownicon.png';
 import settings from '../assets/setting.png';
-import btc_icon from '../assets/btc_icon.webp'
 import { clippyPhrase, clippySuggest } from './function/ClippyFunction';
 import { BsCheck } from "react-icons/bs";
 import Calendar from 'react-calendar';
@@ -166,15 +165,11 @@ export default function Footer() {
         }
     ];
 
-    // need to put these in useeffect Array
-    const isBitcoinInstalled = desktopIcon.find(item => item.name === 'Bitcoin')
-
-
     useEffect(() => { // put add or remove icon in dependency array
         if (timeBarRef.current) {
             setWidth(timeBarRef.current.offsetWidth);
         }
-    }, [isBitcoinInstalled, timeBarRef, width]);
+    }, [timeBarRef, width]);
 
     const handleWheelScroll = (e) => { // wheel from x to Y on tap
         const container = wheelTapContainer.current;
