@@ -1712,7 +1712,6 @@ function App() {
             handleDoubleClickiframe('3dObject', setOpenProjectExpand, setProjectUrl, setProjectDescription)
             handleShow('Internet');
           }
-          handleShow('Internet');
         }
 
         // Generic Project Handler

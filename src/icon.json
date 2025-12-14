@@ -272,5 +272,16 @@
         "category": "Productivity",
         "description": "Stock Price Forecasting with Neural Networks - Published Research",
         "link": "https://ieeexplore.ieee.org/document/9725845"
+    },
+    {
+        "name": "ResetStorage",
+        "pic": "ResetStorage",
+        "folderId": "Utility",
+        "size": 1000,
+        "type": ".exe",
+        "x": 1,
+        "y": 1,
+        "category": "Setting",
+        "description": "Reset local storage and reload application."
     }
 ]
