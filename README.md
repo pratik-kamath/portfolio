@@ -1,6 +1,6 @@
 # Windows 95 Portfolio
 
-**Live Demo:** [https://pratik-kamath.github.io/wins95Portfolio/](https://pratik-kamath.github.io/wins95Portfolio/)
+**Live Demo:** [https://pratik-kamath.github.io/portfolio/](https://pratik-kamath.github.io/portfolio/)
 
 ![Windows 95 Portfolio](src/assets/markdown.png)
 
