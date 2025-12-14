@@ -40,7 +40,7 @@ import tile from '../../assets/tile.png'
 import taskmanager from '../../assets/taskmanager.png'
 import notepad from '../../assets/notepad.png'
 import store from '../../assets/store.png'
-import celeste from '../../assets/celeste.jpg'
+import celeste from '../../assets/celeste.png'
 
 
 
