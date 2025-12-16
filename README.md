@@ -43,7 +43,7 @@ A fully interactive Windows 95-themed portfolio built with React. It features a 
 *   **My Computer**: Navigate through drives (C:, D:) and folders.
 *   **Winamp**: Fully functional music player integration.
 *   **Paint**: Classic MS Paint experience (via JSPaint).
-*   **Mail**: Send emails directly from the desktop (powered by EmailJS).
+*   **Mail**: Send emails directly from the desktop (powered by Web3Forms).
 *   **Projects & Resume**: Showcase of professional work and resume in a file-explorer style.
 *   **Store**: Install and uninstall apps dynamically.
 

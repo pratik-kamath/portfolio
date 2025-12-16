@@ -1,6 +1,5 @@
 import UseContext from '../Context'
-import emailjs from '@emailjs/browser';
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import Mail from '../assets/mail.png'
@@ -28,25 +27,33 @@ function MailFolder() {
 
   // ---------------------- EMAIL JS ---------------------------------------
 
-  const form = useRef();
+  // ---------------------- WEB3FORMS ---------------------------------------
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const [result, setResult] = useState("");
 
-    emailjs
-      .sendForm('service_3jp9sce', 'template_mwqeuol', form.current, {
-        publicKey: 'VEMHa6EGtulAzDYSH',
-      })
-      .then(
-        () => {
-          clippyThanksYouFunction()
-          alert('Thank you for your interest, will contact you back shortly!')
-          form.current.reset();
-        },
-        (error) => {
-          console.log('FAILED...', error.text);
-        },
-      );
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setResult("Sending....");
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", "38d57fe2-f8c0-48d9-8a9e-7920b6b5054d");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setResult("Form Submitted Successfully");
+      clippyThanksYouFunction();
+      alert('Thank you for your interest, will contact you back shortly!');
+      event.target.reset();
+    } else {
+      console.log("Error", data);
+      setResult(data.message);
+    }
   };
 
   // ------------------------------------------------------------------------------
@@ -167,14 +174,16 @@ function MailFolder() {
 
             {/* ------------------ EMAIL JS -------------------------- */}
 
-            <form ref={form} onSubmit={sendEmail}>
+            {/* ------------------ WEB3FORMS -------------------------- */}
+
+            <form onSubmit={onSubmit}>
 
               <div className="form_container">
                 <div className="to_container">
                   <div className="sendmail_icon">
                     <input className="sendmail_img_container" type="submit" value="Send"></input>
                   </div>
-                  <input className="myemail_container" placeholder='pratikkamath@yahoo.co.in' disabled style={{ background: '#d4d1d1' }} />
+                  <input className="myemail_container" placeholder='pratikkamath2000@gmail.com' disabled style={{ background: '#d4d1d1' }} />
                 </div>
                 <div className="to_container">
                   <div className="to_icon"
@@ -183,7 +192,7 @@ function MailFolder() {
                   >
                     <p>Name</p>
                   </div>
-                  <input className="myemail_container" type="text" name="from_name" required ref={focusName} style={{ background: 'white' }} />
+                  <input className="myemail_container" type="text" name="name" required ref={focusName} style={{ background: 'white' }} />
                 </div>
                 <div className="to_container"
                   onClick={() => focusEmail.current.focus()}
@@ -192,7 +201,7 @@ function MailFolder() {
                   <div className="to_icon" >
                     <p>Email</p>
                   </div>
-                  <input className="myemail_container" type="email" name="from_email" ref={focusEmail} style={{ background: 'white' }} />
+                  <input className="myemail_container" type="email" name="email" ref={focusEmail} style={{ background: 'white' }} />
                 </div>
               </div>
               <textarea name="message" required placeholder='Enter your message here...' />
