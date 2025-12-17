@@ -4,6 +4,7 @@ import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import About from '../assets/ipng.png'
 import bioPC from '../assets/bio_pc.png'
+import pratikPhoto from '../assets/pratik.png'
 import tech from '../assets/tech.png'
 import hobby from '../assets/hobby.png'
 import '../css/MyBioFolder.css'
@@ -40,6 +41,7 @@ function MyBioFolder() {
       <strong>Objective:</strong>
       <br />
       <span>Building intelligent systems and </span>
+      <br />
       <span>scalable web applications.</span>
       <br />
       <br />
@@ -178,11 +180,26 @@ function MyBioFolder() {
             <div className="folder_content-bio"
               style={{ display: generalTap ? 'grid' : 'block' }}
             >
-              <img
-                alt="bioPC"
-                className={generalTap ? 'bio_img' : 'bio_img_other'}
-                src={generalTap ? bioPC : (technologyTap ? tech : hobby)}
-              />
+              {generalTap ? (
+                <div className="bio_images_container">
+                  <img
+                    alt="bioPC"
+                    className="bio_img"
+                    src={bioPC}
+                  />
+                  <img
+                    alt="Pratik Kamath"
+                    className="bio_img pratik_photo"
+                    src={pratikPhoto}
+                  />
+                </div>
+              ) : (
+                <img
+                  alt={technologyTap ? "technology" : "hobby"}
+                  className="bio_img_other"
+                  src={technologyTap ? tech : hobby}
+                />
+              )}
               <div
                 className="biotext_container">
 

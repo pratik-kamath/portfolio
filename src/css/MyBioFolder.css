@@ -17,14 +17,14 @@
 
 
 .bio_folder .folder_dragbar {
-   display: flex;
-   position: relative;
-   height: 24px;
-   width: 100%;
-   margin-bottom: 1px;
-   align-items: center;
-   justify-content: space-between;
-   -webkit-user-select: none;
+    display: flex;
+    position: relative;
+    height: 24px;
+    width: 100%;
+    margin-bottom: 1px;
+    align-items: center;
+    justify-content: space-between;
+    -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -57,14 +57,17 @@
     background: #c9c9c9;
     font-weight: bold;
     border: 1px solid black;
-    border-top-color: rgb(198, 198, 198);border-left-color: rgb(198, 198, 198);
+    border-top-color: rgb(198, 198, 198);
+    border-left-color: rgb(198, 198, 198);
     box-shadow: inset 1px 1px #ffffff, 1px 1px #000000dd;
     cursor: default;
 }
 
 .bio_barbtn div:not(.expand):active {
-    border-top-color: black;border-left-color: black;
-    border-bottom-color: white;border-right-color: white;
+    border-top-color: black;
+    border-left-color: black;
+    border-bottom-color: white;
+    border-right-color: white;
 }
 
 .bio_barbtn .x {
@@ -77,7 +80,7 @@
 /* support only safari */
 @supports (-webkit-touch-callout: none) {
     .bio_barbtn .x {
-        bottom: 7px; 
+        bottom: 7px;
         left: 1px;
     }
 }
@@ -89,6 +92,7 @@
     margin: 0 auto;
     border-bottom: 2px solid black;
 }
+
 .bio_barbtn .expand {
     position: relative;
     width: 10px;
@@ -100,6 +104,7 @@
     top: 3px;
     z-index: 1;
 }
+
 .bio_barbtn .expand.full {
     position: relative;
     width: 8px;
@@ -171,7 +176,7 @@
     width: calc(100% - 10px);
     height: calc(100% - 95px);
     grid-template-columns: 1/2;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.275rem 1rem 1.5rem;
     border: 2px solid rgb(53, 52, 52);
     border-top-color: #f0efef;
     border-left-color: #f0efef;
@@ -180,10 +185,10 @@
     background: #c5c4c4;
     overflow: hidden;
     word-break: break-word;
-    grid-template-areas: 
-    /* 'bio_h1 bio_h1' */
-    'bio_img biotext_container'
-    /* 'cv_container cv_container'; */
+    grid-template-areas:
+        /* 'bio_h1 bio_h1' */
+        'bio_img biotext_container'
+        /* 'cv_container cv_container'; */
 }
 
 .folder_content .biotext_container {
@@ -198,12 +203,23 @@
     white-space: normal;
 }
 
+.folder_content-bio .bio_images_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-left: -1.5rem;
+}
+
 .folder_content-bio .bio_img {
     position: relative;
-    width: 180px;
-    margin-left: -1.5rem;
-    top: 1.2rem;
+    width: 120px;
 }
+
+.folder_content-bio .pratik_photo {
+    width: 79px;
+}
+
 .folder_content-bio .bio_img_other {
     position: relative;
     width: 150px;
@@ -295,6 +311,7 @@
     margin-top: 6px;
 
 }
+
 .bio_btn_container div {
     position: relative;
     width: 70px;
@@ -310,11 +327,13 @@
 .bio_btn_container span {
     font-size: 13px;
 }
+
 .bio_btn_container .bio_btn_ok {
     border-top-color: #f0efef;
     border-left-color: #f0efef;
     cursor: pointer;
 }
+
 .bio_btn_container .bio_btn_cancel {
     border-top-color: #f0efef;
     border-left-color: #f0efef;
@@ -379,20 +398,26 @@
     }
 } */
 
-@media screen and (width <= 500px) {
+@media screen and (width <=500px) {
     .bio_folder {
         width: 380px;
     }
+
     .folder_content-bio .bio_img {
-        width: 160px;
+        width: 106px;
     }
+
+    .folder_content-bio .pratik_photo {
+        width: 67px;
+    }
+
     .folder_content-bio .bio_text_1 {
         left: .5rem;
     }
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (min-width: 0px) {
-    .x {      
+    .x {
         left: 1px;
     }
 }
