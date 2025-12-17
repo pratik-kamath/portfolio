@@ -41,6 +41,8 @@ import taskmanager from '../../assets/taskmanager.png'
 import notepad from '../../assets/notepad.png'
 import store from '../../assets/store.png'
 import celeste from '../../assets/celeste.png'
+import aiNewsletter from '../../assets/Scaleable-Web-AI-Agent.png'
+import documentQA from '../../assets/LLM-generic-text.png'
 
 
 
@@ -198,6 +200,16 @@ export function imageMapping(name, type) {
     case "CeleStE":
     case "celeste":
       return celeste
+
+    case "AINewsletter":
+    case "ainewsletter":
+      return aiNewsletter
+
+    case "DocumentQA":
+    case "documentqa":
+    case "LLMRAG":
+    case "llmrag":
+      return documentQA
 
     default:
       if (type === 'folder') {

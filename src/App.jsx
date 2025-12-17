@@ -1466,6 +1466,8 @@ function App() {
       { name: 'Bitcoin', setter: setBtcShow, usestate: btcShow, color: 'rgba(132, 140, 207, 0.85)', size: 'small' },
       { name: 'CeleStE', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(82, 117, 132, 0.85)', size: 'small' },
       { name: 'IEEE Paper', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(82, 117, 132, 0.85)', size: 'small' },
+      { name: 'AI Newsletter', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(82, 117, 132, 0.85)', size: 'small' },
+      { name: 'LLM RAG', setter: setOpenProjectExpand, usestate: openProjectExpand, color: 'rgba(82, 117, 132, 0.85)', size: 'small' },
 
       // Add user folders dynamically with individual state management
       ...UserCreatedFolder.map(folder => ({

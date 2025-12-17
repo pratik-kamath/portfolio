@@ -37,6 +37,12 @@ A fully interactive Windows 95-themed portfolio built with React. It features a 
 *   **Mail**: Send emails directly from the desktop (powered by Web3Forms).
 *   **Projects & Resume**: Showcase of professional work and resume in a file-explorer style.
 
+### 🚀 Featured Projects
+*   **CeleStE**: Full-stack conference management software (React.js, React Native, FastAPI, MongoDB)
+*   **AI Newsletter**: Scalable AI newsletter generator (Google Gemini, Inngest, FastAPI)
+*   **LLM RAG**: Document Q&A system with RAG (Google Gemini, Pinecone Vector DB, Streamlit)
+*   **IEEE Paper**: Published research on stock price forecasting with neural networks
+
 ### ⚙️ System & Utilities
 *   **Settings**: Customize wallpaper, themes, and icon sizes.
 *   **Responsive Design**: optimized for both desktop and mobile (touch support).

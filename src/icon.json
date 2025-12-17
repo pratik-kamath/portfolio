@@ -258,7 +258,7 @@
         "x": 36,
         "y": 36,
         "category": "Productivity",
-        "description": "Conference Management System - React, Node.js, MongoDB",
+        "description": "A full-stack conference management software that helps organisers manage conferences with features for agenda management, user authentication, networking/chat, and ticketing. Built with React.js for web, React Native for mobile, and Python FastAPI backend with MongoDB and Redis for data storage.",
         "link": "https://github.com/pratik-kamath/CeleStE-Conference-Management-Software"
     },
     {
@@ -270,8 +270,32 @@
         "x": 37,
         "y": 37,
         "category": "Productivity",
-        "description": "Stock Price Forecasting with Neural Networks - Published Research",
+        "description": "Research comparing neural networks (CNN, LSTM, BiLSTM) with ARIMA for stock price forecasting. Analysis shows BiLSTM outperforms traditional regression models for time series prediction challenges in financial markets.",
         "link": "https://ieeexplore.ieee.org/document/9725845"
+    },
+    {
+        "name": "AI Newsletter",
+        "pic": "AINewsletter",
+        "folderId": "Project",
+        "size": 3000,
+        "type": ".exe",
+        "x": 38,
+        "y": 38,
+        "category": "Productivity",
+        "description": "A scalable, event-driven AI newsletter generator powered by Google Gemini 2.5 Flash. Uses Inngest for reliable background job processing, BrightData SERP API for web search, and FastAPI backend. Automatically fetches latest news and crafts professional newsletters.",
+        "link": "https://github.com/pratik-kamath/Scalable-Web-Ai-Agent"
+    },
+    {
+        "name": "LLM RAG",
+        "pic": "DocumentQA",
+        "folderId": "Project",
+        "size": 2500,
+        "type": ".exe",
+        "x": 39,
+        "y": 39,
+        "category": "Productivity",
+        "description": "RAG-based document Q&A system using LLM and VectorDB technologies. Implements Retrieval-Augmented Generation with Google Gemini for response synthesis and Pinecone vector embeddings for semantic search. Upload PDFs, index document chunks, and get context-aware answers via Streamlit UI.",
+        "link": "https://github.com/pratik-kamath/LLM-generic-text"
     },
     {
         "name": "ResetStorage",
