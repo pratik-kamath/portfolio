@@ -56,3 +56,4 @@ A fully interactive Windows 95-themed portfolio built with React. It features a 
 
 ## Credits
 Windows 95 Icons: [Old Windows Icons](https://oldwindowsicons.tumblr.com/tagged/windows%2095)
+
