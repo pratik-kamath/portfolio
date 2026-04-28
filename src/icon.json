@@ -307,5 +307,50 @@
         "y": 1,
         "category": "Setting",
         "description": "Reset local storage and reload application."
+    },
+    {
+        "name": "Certifications",
+        "pic": "Certifications",
+        "folderId": "Resume",
+        "size": 30,
+        "type": "folder",
+        "x": 40,
+        "y": 40
+    },
+    {
+        "name": "AWS Cloud Practitioner",
+        "pic": "AWS Cloud Practitioner",
+        "folderId": "Certifications",
+        "size": 50,
+        "type": ".exe",
+        "x": 41,
+        "y": 41,
+        "category": "Productivity",
+        "description": "AWS Cloud Quest: Cloud Practitioner credential",
+        "link": "https://www.credly.com/badges/9cf207dc-5495-4103-a2d6-4c0c2187ad24/linked_in_profile"
+    },
+    {
+        "name": "Databricks GenAI",
+        "pic": "Databricks GenAI",
+        "folderId": "Certifications",
+        "size": 50,
+        "type": ".exe",
+        "x": 42,
+        "y": 42,
+        "category": "Productivity",
+        "description": "Databricks Academy Accreditation - Generative AI Fundamentals",
+        "link": "https://credentials.databricks.com/ab3648b0-7d7a-4185-8636-53809cb12b0d"
+    },
+    {
+        "name": "Databricks AI Agent",
+        "pic": "Databricks AI Agent",
+        "folderId": "Certifications",
+        "size": 50,
+        "type": ".exe",
+        "x": 43,
+        "y": 43,
+        "category": "Productivity",
+        "description": "Databricks Academy Accreditation - AI Agent Fundamentals",
+        "link": "https://credentials.databricks.com/bc1845e2-4605-45ae-9ee3-9c8558336050"
     }
 ]

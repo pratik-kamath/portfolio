@@ -3,18 +3,15 @@ import { useContext, useState } from "react";
 import Draggable from 'react-draggable'
 import { motion } from 'framer-motion';
 import About from '../assets/ipng.png'
-import bioPC from '../assets/bio_pc.png'
 import pratikPhoto from '../assets/pratik.png'
-import tech from '../assets/tech.png'
-import hobby from '../assets/hobby.png'
 import '../css/MyBioFolder.css'
 
 
 function MyBioFolder() {
 
-  const [generalTap, setGenerapTap] = useState(true)
-  const [technologyTap, setTechnologyTap] = useState(false)
-  const [hobbTap, setHobbTap] = useState(false)
+  const [aboutTap, setAboutTap] = useState(true)
+  const [siteTap, setSiteTap] = useState(false)
+  const [experienceTap, setExperienceTap] = useState(false)
 
   const {
     themeDragBar,
@@ -27,69 +24,47 @@ function MyBioFolder() {
     deleteTap,
   } = useContext(UseContext);
 
-  const technologyText = (
-    <>
-      I specialize in building full-stack applications with <span>React</span>, <span>Node.js</span>,
-      and <span>Python</span>. I have experience with <span>Flask</span>, <span>Django</span>, and <span>FastAPI</span>
-      for backend development. For databases, I work with <span>PostgreSQL</span>, <span>MongoDB</span>, and <span>Redis</span>.
-      I'm also passionate about <span>AI/ML</span> and have published research on neural networks for stock forecasting.
-    </>
-  );
+  const siteStack = [
+    { label: 'Frontend', chips: ['React 18', 'Vite 5', 'JavaScript'] },
+    { label: 'UI / UX', chips: ['framer-motion', 'react-draggable', 'react-icons', 'CSS'] },
+    { label: 'Embedded Apps', chips: ['Webamp (Winamp)', 'recharts', 'react-calendar', 'react-color'] },
+    { label: 'Deploy', chips: ['GitHub Pages', 'GitHub Actions CI'] },
+  ]
 
-  const bioText = (
-    <>
-      <strong>Objective:</strong>
-      <br />
-      <span>Building intelligent systems and </span>
-      <br />
-      <span>scalable web applications.</span>
-      <br />
-      <br />
-      <strong>Information:</strong>
-      <br />
-      <span>Pratik Kamath</span>
-      <br />
-      <span>Software Engineer</span>
-      <br />
-      <span>pratikkamath2000@gmail.com</span>
-      <br />
-      <br />
-      <strong>Location: </strong>
-      <br />
-      <span>Sydney, Australia</span>
-      <br />
-      <span>UNSW Master's Graduate</span>
-      <br />
-      <span>Open to work</span>
-    </>
-  );
-
-  const hobbyText = (
-    <>
-      When I'm not coding, I enjoy exploring new technologies
-      and working on side projects. I like to stay active,
-      discover new places in Sydney, and keep up with the
-      latest developments in AI and machine learning.
-      I'm always eager to learn and take on new challenges!
-    </>
-  );
+  const experienceRoles = [
+    {
+      company: 'Multifactor AI Inc',
+      title: 'AI Engineer',
+      dates: 'Feb 2026 – Present',
+      bullet: 'Built production multi-agent code review system + tool-using GenAI agent on FastAPI / LangGraph / pgvector.',
+    },
+    {
+      company: 'Mark Computers',
+      title: 'SWE Intern',
+      dates: 'Oct – Dec 2025',
+      bullet: 'Engineered Fuel Retail Management System on AWS (EC2, RDS); cut manual logging errors 93%.',
+    },
+    {
+      company: 'L&T Realty',
+      title: 'SWE Intern',
+      dates: 'May – Jul 2021',
+      bullet: 'Trained Random Forest / GBM real estate price models from 74% → 92%; deployed full-stack on FastAPI + React.',
+    },
+  ]
 
   function handleDragStop(event, data) {
-    const positionX = data.x
-    const positionY = data.y
     setMybioExpand(prev => ({
       ...prev,
-      x: positionX,
-      y: positionY
+      x: data.x,
+      y: data.y,
     }))
-
   }
 
 
   function handleBiotap(name) {
-    setGenerapTap(name === 'general');
-    setTechnologyTap(name === 'technology');
-    setHobbTap(name === 'hobby');
+    setAboutTap(name === 'about');
+    setSiteTap(name === 'site');
+    setExperienceTap(name === 'experience');
   }
 
   const activeBtnStyle = {
@@ -151,11 +126,11 @@ function MyBioFolder() {
                 <p className='x'
                   onClick={!isTouchDevice ? () => {
                     deleteTap('About')
-                    handleBiotap('general')
+                    handleBiotap('about')
                   } : undefined}
                   onTouchEnd={() => {
                     deleteTap('About')
-                    handleBiotap('general')
+                    handleBiotap('about')
                   }}
                 >×
                 </p>
@@ -163,77 +138,120 @@ function MyBioFolder() {
             </div>
           </div>
           <div className="file_tap_container-bio">
-            <p onClick={() => handleBiotap('general')}
-              style={generalTap ? activeBtnStyle : {}}
-            >General
+            <p onClick={() => handleBiotap('about')}
+              style={aboutTap ? activeBtnStyle : {}}
+            >About
             </p>
-            <p onClick={() => handleBiotap('technology')}
-              style={technologyTap ? activeBtnStyle : {}}
-            >Technology
+            <p onClick={() => handleBiotap('site')}
+              style={siteTap ? activeBtnStyle : {}}
+            >This Site
             </p>
-            <p onClick={() => handleBiotap('hobby')}
-              style={hobbTap ? activeBtnStyle : {}}
-            >Hobby
+            <p onClick={() => handleBiotap('experience')}
+              style={experienceTap ? activeBtnStyle : {}}
+            >Experience
             </p>
           </div>
           <div className="folder_content">
-            <div className="folder_content-bio"
-              style={{ display: generalTap ? 'grid' : 'block' }}
-            >
-              {generalTap ? (
-                <div className="bio_images_container">
-                  <img
-                    alt="bioPC"
-                    className="bio_img"
-                    src={bioPC}
-                  />
-                  <img
-                    alt="Pratik Kamath"
-                    className="bio_img pratik_photo"
-                    src={pratikPhoto}
-                  />
+            <div className="folder_content-bio">
+              {aboutTap && (
+                <div className="bio_about_panel">
+                  <div className="bio_about_card">
+                    <img src={pratikPhoto} alt="Pratik Kamath" className="bio_avatar" />
+                    <div className="bio_about_text">
+                      <h2>Pratik Kamath</h2>
+                      <p className="bio_role">AI Engineer @ Multifactor AI Inc</p>
+                      <p className="bio_tagline">
+                        Shipping full-stack apps and agentic systems.
+                      </p>
+                    </div>
+                  </div>
+                  <fieldset className="bio_properties_group">
+                    <legend>Properties</legend>
+                    <div className="bio_property_row">
+                      <span className="bio_property_label">Location</span>
+                      <span className="bio_property_value">Sydney, NSW</span>
+                    </div>
+                    <div className="bio_property_row">
+                      <span className="bio_property_label">Email</span>
+                      <a
+                        className="bio_property_value bio_link"
+                        href="mailto:pratikkamath2000@gmail.com"
+                        onClick={(e) => e.stopPropagation()}
+                      >pratikkamath2000@gmail.com</a>
+                    </div>
+                    <div className="bio_property_row">
+                      <span className="bio_property_label">LinkedIn</span>
+                      <a
+                        className="bio_property_value bio_link"
+                        href="https://www.linkedin.com/in/pratik-kamath/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                      >linkedin.com/in/pratik-kamath</a>
+                    </div>
+                    <div className="bio_property_row">
+                      <span className="bio_property_label">GitHub</span>
+                      <a
+                        className="bio_property_value bio_link"
+                        href="https://github.com/pratik-kamath"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                      >github.com/pratik-kamath</a>
+                    </div>
+                  </fieldset>
                 </div>
-              ) : (
-                <img
-                  alt={technologyTap ? "technology" : "hobby"}
-                  className="bio_img_other"
-                  src={technologyTap ? tech : hobby}
-                />
               )}
-              <div
-                className="biotext_container">
 
-                <p className={generalTap ? 'bio_text_1' : 'bio_text_1_other'}>
-                  {generalTap ? bioText : technologyTap ? technologyText : hobbyText}
-                </p>
-              </div>
+              {siteTap && (
+                <div className="bio_site_panel">
+                  <p className="bio_site_intro">
+                    A Windows&nbsp;95&ndash;themed interactive portfolio. Drag windows around the
+                    desktop, browse projects in folders, and play with embedded retro apps like
+                    Winamp and Minesweeper. Built as a creative way to showcase my work in a
+                    nostalgic UI rather than a static page.
+                  </p>
+                  <div className="bio_skills_panel">
+                    {siteStack.map(cat => (
+                      <div key={cat.label} className="bio_skill_row">
+                        <p className="bio_skill_label">{cat.label}</p>
+                        <div className="bio_skill_chips">
+                          {cat.chips.map(chip => (
+                            <span key={chip} className="bio_skill_chip">{chip}</span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="bio_site_source">
+                    Source:{' '}
+                    <a
+                      className="bio_link"
+                      href="https://github.com/pratik-kamath/portfolio"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      github.com/pratik-kamath/portfolio
+                    </a>
+                  </p>
+                </div>
+              )}
 
-            </div>
-            <div className="bio_btn_container">
-              <div className="bio_btn_ok"
-                onClick={!isTouchDevice ? () => {
-                  deleteTap('About')
-                  handleBiotap('general')
-                } : undefined}
-                onTouchEnd={() => {
-                  deleteTap('About')
-                  handleBiotap('general')
-                }}
-              >
-                <span>
-                  OK
-                </span>
-              </div>
-              <div className="bio_btn_cancel"
-                onClick={!isTouchDevice ? () => {
-                  deleteTap('About')
-                  handleBiotap('general')
-                } : undefined}
-                onTouchEnd={() => {
-                  deleteTap('About')
-                  handleBiotap('general')
-                }}
-              ><span>Cancel</span></div>
+              {experienceTap && (
+                <div className="bio_experience_panel">
+                  {experienceRoles.map(role => (
+                    <div key={role.company} className="bio_role_card">
+                      <div className="bio_role_header">
+                        <span className="bio_role_company">{role.company}</span>
+                        <span className="bio_role_dates">{role.dates}</span>
+                      </div>
+                      <p className="bio_role_title">{role.title}</p>
+                      <p className="bio_role_bullet">{role.bullet}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </motion.div>

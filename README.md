@@ -33,9 +33,11 @@ A fully interactive Windows 95-themed portfolio built with React. It features a 
 
 ### 📱 Applications
 *   **My Computer**: Navigate through drives (C:, D:) and folders.
-*   **Winamp**: Fully functional music player integration.
+*   **Winamp**: Fully functional music player integration (powered by Webamp).
 *   **Mail**: Send emails directly from the desktop (powered by Web3Forms).
 *   **Projects & Resume**: Showcase of professional work and resume in a file-explorer style.
+*   **Certifications**: Sub-folder inside Resume containing credential badges with click-through to verify.
+*   **About**: Tabbed dialog with identity card, portfolio tech stack, and work experience timeline.
 
 ### 🚀 Featured Projects
 *   **CeleStE**: Full-stack conference management software (React.js, React Native, FastAPI, MongoDB)
@@ -43,16 +45,24 @@ A fully interactive Windows 95-themed portfolio built with React. It features a 
 *   **LLM RAG**: Document Q&A system with RAG (Google Gemini, Pinecone Vector DB, Streamlit)
 *   **IEEE Paper**: Published research on stock price forecasting with neural networks
 
+### 🎓 Credentials
+*   **AWS**: Cloud Quest — Cloud Practitioner
+*   **Databricks**: Academy Accreditation — AI Agent Fundamentals & Generative AI Fundamentals
+
 ### ⚙️ System & Utilities
 *   **Settings**: Customize wallpaper, themes, and icon sizes.
 *   **Responsive Design**: optimized for both desktop and mobile (touch support).
 *   **Clippy**: The classic assistant provides tips and animations.
 
 ## Libraries Used
-*   **React**: Core framework.
+*   **React 18**: Core framework.
+*   **Vite 5**: Build tool & dev server.
 *   **React Draggable**: Window movement.
 *   **Framer Motion**: Animations.
+*   **Webamp**: In-browser Winamp music player.
 *   **React Calendar**: Calendar widget.
+*   **Recharts**: Charting (used in embedded apps).
+*   **GitHub Pages + Actions**: CI-only deployment from `main`.
 
 ## Credits
 Windows 95 Icons: [Old Windows Icons](https://oldwindowsicons.tumblr.com/tagged/windows%2095)

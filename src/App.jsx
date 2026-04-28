@@ -7,6 +7,7 @@ import Dragdrop from './components/Dragdrop';
 import MyBioFolder from './components/MyBioFolder';
 import MyComputer from './components/MyComputer';
 import ResumeFolder from './components/ResumeFolder';
+import CertificationsFolder from './components/CertificationsFolder';
 import ProjectFolder from './components/ProjectFolder';
 import MailFolder from './components/MailFolder';
 import WebampPlayer from './components/WinampPlayer';
@@ -125,6 +126,7 @@ function App() {
   const DesktopRef = useRef(null);
   const ProjectFolderRef = useRef(null);
   const ResumeFolderRef = useRef(null);
+  const CertificationsFolderRef = useRef(null);
   const BinRef = useRef(null);
   const DiskRef = useRef(null);
   const PictureRef = useRef(null)
@@ -178,6 +180,9 @@ function App() {
       x: 0, y: 0, // position before fullscreen
     });
   const [ResumeExpand, setResumeExpand] = useState(
+    { expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1, });
+
+  const [CertificationsExpand, setCertificationsExpand] = useState(
     { expand: false, show: false, hide: false, focusItem: true, x: 0, y: 0, zIndex: 1, });
 
   const [ProjectExpand, setProjectExpand] = useState(
@@ -623,6 +628,9 @@ function App() {
       const iconRect = iconRef.getBoundingClientRect();
       const resumeFolderRect = ResumeFolderRef.current.getBoundingClientRect();
       const projectFolderRect = ProjectFolderRef.current.getBoundingClientRect();
+      const certificationsFolderRect = CertificationsFolderRef.current
+        ? CertificationsFolderRef.current.getBoundingClientRect()
+        : null;
       const desktopRect = DesktopRef.current.getBoundingClientRect();
       const diskRect = DiskRef.current.getBoundingClientRect();
       const PictureRect = PictureRef.current.getBoundingClientRect();
@@ -683,6 +691,17 @@ function App() {
         setDropTargetFolder('Picture');
       }
 
+      // Check for intersection with the Certifications folder (sub-folder of Resume)
+      else if (
+        certificationsFolderRect &&
+        iconRect.left < certificationsFolderRect.right - offset &&
+        iconRect.right > certificationsFolderRect.left + offset &&
+        iconRect.top < certificationsFolderRect.bottom - offset &&
+        iconRect.bottom > certificationsFolderRect.top + offset
+      ) {
+        if (name === 'Certifications') return;
+        setDropTargetFolder('Certifications');
+      }
       // Check for intersection with the Resume folder
       else if (
         iconRect.left < resumeFolderRect.right - offset &&
@@ -713,7 +732,7 @@ function App() {
         // check within MyComputer
         if (name === 'MyComputer') return;
         // add new folder in this array
-        const validFolders = ['DiskC', 'DiskD', 'Resume', 'Project', 'Picture', 'RecycleBin', 'Utility', ...UserCreatedFolder.map(item => item.name)];
+        const validFolders = ['DiskC', 'DiskD', 'Resume', 'Certifications', 'Project', 'Picture', 'RecycleBin', 'Utility', ...UserCreatedFolder.map(item => item.name)];
         if (validFolders.includes(currentFolder)) {
           setDropTargetFolder(currentFolder);
         }
@@ -757,6 +776,13 @@ function App() {
       setCurrentFolder('Resume')
       setSelectedFolder({ label: 'Resume', img: imageMapping(name) })
       setUndo(prev => [...prev, 'Resume'])
+      return;
+    }
+
+    if (name === 'Certifications') {
+      setCurrentFolder('Certifications')
+      setSelectedFolder({ label: 'Certifications', img: imageMapping(name) })
+      setUndo(prev => [...prev, 'Certifications'])
       return;
     }
 
@@ -823,17 +849,17 @@ function App() {
         setTimeout(() => {
           setCurrentFolder('Resume')
         }, 100);
-        setSelectedFolder({ label: 'Hard Disk (D:)', img: imageMapping(name) })
+        setSelectedFolder({ label: 'Resume', img: imageMapping(name) })
         setUndo(prev => [...prev, 'Resume'])
         return;
       }
 
-      if (name === 'Resume') {
+      if (name === 'Certifications') {
         setTimeout(() => {
-          setCurrentFolder('Resume')
+          setCurrentFolder('Certifications')
         }, 100);
-        setSelectedFolder({ label: 'Resume', img: imageMapping(name) })
-        setUndo(prev => [...prev, 'Resume'])
+        setSelectedFolder({ label: 'Certifications', img: imageMapping(name) })
+        setUndo(prev => [...prev, 'Certifications'])
         return;
       }
 
@@ -957,6 +983,7 @@ function App() {
     DesktopRef,
     ProjectFolderRef,
     ResumeFolderRef,
+    CertificationsFolderRef,
     DiskRef,
     handleDrop,
     dropTargetFolder, setDropTargetFolder,
@@ -969,6 +996,7 @@ function App() {
     imageMapping,
     lastTapTime, setLastTapTime,
     ResumeExpand, setResumeExpand,
+    CertificationsExpand, setCertificationsExpand,
     handleShow, handleShowMobile,
     StyleHide,
     isTouchDevice, setIsTouchDevice,
@@ -1147,6 +1175,7 @@ function App() {
         <MyComputer />
         <MyBioFolder />
         <ResumeFolder />
+        <CertificationsFolder />
         <ProjectFolder />
         <MailFolder />
         <ResumeFile />
@@ -1440,6 +1469,7 @@ function App() {
 
       { name: 'About', setter: setMybioExpand, usestate: MybioExpand, color: 'rgba(46, 108, 176, 0.85)', size: 'small' },
       { name: 'Resume', setter: setResumeExpand, usestate: ResumeExpand, color: 'rgba(65, 138, 68, 0.85)', size: 'small' },
+      { name: 'Certifications', setter: setCertificationsExpand, usestate: CertificationsExpand, color: 'rgba(65, 138, 68, 0.85)', size: 'small' },
       { name: 'Project', setter: setProjectExpand, usestate: ProjectExpand, color: 'rgba(211, 117, 0, 0.85)', size: 'small' },
       { name: 'Picture', setter: setPictureExpand, usestate: pictureExpand, color: 'rgba(85, 50, 148, 0.85)', size: 'large' },
       { name: 'Mail', setter: setMailExpand, usestate: MailExpand, color: 'rgba(178, 26, 77, 0.85)', size: 'small' },
@@ -1536,6 +1566,16 @@ function App() {
 
     if (lowerCaseName === 'linkedin') {
       window.open('https://www.linkedin.com/in/pratik-kamath/', '_blank');
+      return;
+    }
+
+    const certificationIcon = desktopIcon.find(icon =>
+      icon.folderId === 'Certifications'
+      && icon.link
+      && icon.name.toLowerCase().split(' ').join('') === lowerCaseName
+    );
+    if (certificationIcon) {
+      window.open(certificationIcon.link, '_blank');
       return;
     }
 
@@ -1660,6 +1700,16 @@ function App() {
 
       if (lowerCaseName === 'linkedin') {
         window.open('https://www.linkedin.com/in/pratik-kamath/', '_blank');
+        return;
+      }
+
+      const certificationIcon = desktopIcon.find(icon =>
+        icon.folderId === 'Certifications'
+        && icon.link
+        && icon.name.toLowerCase().split(' ').join('') === lowerCaseName
+      );
+      if (certificationIcon) {
+        window.open(certificationIcon.link, '_blank');
         return;
       }
 

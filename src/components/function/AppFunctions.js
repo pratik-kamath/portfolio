@@ -43,6 +43,9 @@ import store from '../../assets/store.png'
 import celeste from '../../assets/celeste.png'
 import aiNewsletter from '../../assets/Scaleable-Web-AI-Agent.png'
 import documentQA from '../../assets/LLM-generic-text.png'
+import awsCloudPractitioner from '../../assets/AWS_cloud_quest_cloud_practioner_retro.png'
+import databricksGenAI from '../../assets/databricks_gen_ai_cert_retro.png'
+import databricksAIAgent from '../../assets/databricks_ai_agent_cert_retro.png'
 
 
 
@@ -88,7 +91,17 @@ export function imageMapping(name, type) {
       return MyComputer;
 
     case 'Resume':
+    case 'Certifications':
       return Resume;
+
+    case 'AWS Cloud Practitioner':
+      return awsCloudPractitioner;
+
+    case 'Databricks GenAI':
+      return databricksGenAI;
+
+    case 'Databricks AI Agent':
+      return databricksAIAgent;
 
     case 'Mail':
       return Mail;
