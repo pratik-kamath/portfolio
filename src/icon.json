@@ -352,5 +352,17 @@
         "category": "Productivity",
         "description": "Databricks Academy Accreditation - AI Agent Fundamentals",
         "link": "https://credentials.databricks.com/bc1845e2-4605-45ae-9ee3-9c8558336050"
+    },
+    {
+        "name": "AWS GenAI Practitioner",
+        "pic": "AWS GenAI Practitioner",
+        "folderId": "Certifications",
+        "size": 50,
+        "type": ".exe",
+        "x": 44,
+        "y": 44,
+        "category": "Productivity",
+        "description": "AWS Cloud Quest: Generative AI Practitioner credential",
+        "link": "https://www.credly.com/badges/c04a69d8-15e2-47a0-9b6e-0ce3e6b81cb5/linked_in_profile"
     }
 ]
