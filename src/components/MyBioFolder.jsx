@@ -41,7 +41,7 @@ function MyBioFolder() {
     {
       company: 'Mark Computers',
       title: 'SWE Intern',
-      dates: 'Oct – Dec 2025',
+      dates: 'Jul – Dec 2025',
       bullet: 'Engineered Fuel Retail Management System on AWS (EC2, RDS); cut manual logging errors 93%.',
     },
     {
